@@ -63,7 +63,7 @@ Les attributs HTML `min`, `max` et `step` définissent les limites dans les deux
 - [Formulaire d'ajout](src/components/monsterAdd/template.js).
 - [Formulaire de modification](src/components/monster/template.js).
 
-L'affichage des têtes de mort se trouve dans la méthode `render()` de [Monster.js](src/components/monster/Monster.js). La méthode `.repeat(this.dangerLevel)` répète le symbole selon le niveau de danger. Si la valeur n'est pas un entier entre 1 et 5, le nombre est affiché directement. En cas de changement des limites, adapter également cette condition.
+L'affichage des têtes de mort se trouve dans la méthode `render()` de [Monster.js](src/components/monster/Monster.js). La méthode `.repeat(this.dangerLevel)` répète directement le symbole selon le niveau de danger.
 
 ## Organisation du code
 
@@ -95,8 +95,5 @@ La classe `DB` utilise les routes suivantes, relatives à cette adresse :
 | `updateOne(data)` | `PUT /monsters/:id` | Modifier une créature |
 | `deleteOneById(id)` | `DELETE /monsters/:id` | Supprimer une créature |
 
-## Périmètre de cette version
-
-La gestion des erreurs réseau n'est pas incluse dans cette version du cours. Les validations des champs sont conservées. Les modifications d'une ligne qui n'ont pas encore été enregistrées sont perdues si le tableau est réaffiché, par exemple lors d'une recherche ou d'un tri.
 
 

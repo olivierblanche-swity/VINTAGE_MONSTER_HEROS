@@ -18,13 +18,10 @@ export default class MonstersList {
   // Charge les créatures depuis l'API et les affiche dans la liste.
   async loadMonsters() {
     const message = this.domElt.querySelector(".list-message");
-    const addButton = this.domElt.querySelector("form button");
-    addButton.disabled = true;
     message.textContent = "Chargement des créatures...";
     const monsters = await DB.findALL();
     this.monsters = monsters.map((monster) => this.createMonster(monster));
     this.renderMonsters();
-    addButton.disabled = false;
   }
 
   // Crée un objet Monster et lui transmet les fonctions de mise à jour et de suppression.
@@ -104,8 +101,7 @@ export default class MonstersList {
   async deleteOneById(id) {
     // Même ordre que dans la todolist : API, tableau, puis DOM.
     await DB.deleteOneById(id);
-    const index = this.monsters.findIndex((monster) => monster.id === id);
-    if (index !== -1) this.monsters.splice(index, 1);
+    this.monsters = this.monsters.filter((monster) => monster.id !== id);
     this.renderMonsters();
   }
 

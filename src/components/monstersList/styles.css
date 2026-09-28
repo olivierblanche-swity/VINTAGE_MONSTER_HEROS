@@ -12,5 +12,4 @@
   .monster-archive { flex: 2; }
 }
 .sort-selected { text-decoration: underline; }
-button:disabled { opacity: 0.5; cursor: wait; }
 

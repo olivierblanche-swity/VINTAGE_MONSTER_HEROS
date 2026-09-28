@@ -20,14 +20,6 @@ export default class MonsterAdd {
     form.addEventListener("submit", async (e) => {
       e.preventDefault(); // Empêche le rechargement de la page.
       const nameInput = form.elements.namedItem("name");
-      if (!nameInput.value.trim()) {
-        nameInput.setCustomValidity("Veuillez saisir un nom.");
-        nameInput.reportValidity();
-        return;
-      }
-
-      const button = form.querySelector("button");
-      button.disabled = true; // Évite deux ajouts pendant la même requête.
       await this.onAdd({
         name: nameInput.value.trim(),
         type: form.elements.namedItem("type").value,
@@ -36,11 +28,6 @@ export default class MonsterAdd {
       });
       form.reset(); // On vide seulement après un ajout réussi.
       nameInput.focus();
-      button.disabled = false;
-    });
-
-    form.elements.namedItem("name").addEventListener("input", (e) => {
-      e.target.setCustomValidity("");
     });
   }
 }
