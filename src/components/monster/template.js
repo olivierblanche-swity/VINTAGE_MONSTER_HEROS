@@ -1,4 +1,4 @@
-import "./styles.css";
+
 
 // Retourne le HTML d'une ligne de créature avec ses champs de modification et ses boutons.
 export default function getTemplate() {
@@ -48,4 +48,5 @@ export default function getTemplate() {
     </tr>
   `;
 }
+
 

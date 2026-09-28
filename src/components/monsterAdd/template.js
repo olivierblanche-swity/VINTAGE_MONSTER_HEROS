@@ -1,4 +1,4 @@
-import "./styles.css";
+
 
 // Retourne le HTML du formulaire permettant d'ajouter une créature.
 export default function getTemplate() {
@@ -34,4 +34,5 @@ export default function getTemplate() {
     </aside>
   `;
 }
+
 
