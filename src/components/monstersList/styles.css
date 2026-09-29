@@ -1,7 +1,7 @@
 /* Les deux composants restent côte à côte sur un grand écran. */
 #app {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: 2rem;
   width: 100%;
 }

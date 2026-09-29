@@ -1,4 +1,4 @@
-// Cette classe regroupe les appels à MockAPI, comme dans la todolist.
+// Cette classe regroupe les appels à MockAPI.
 export default class DB {
   // Enregistre l'adresse de l'API utilisée pour les requêtes.
   static setApiURL(data) {
