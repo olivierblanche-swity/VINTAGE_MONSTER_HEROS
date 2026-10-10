@@ -26,10 +26,14 @@ export default class MonstersList {
 
   // Crée un objet Monster et lui transmet les fonctions de mise à jour et de suppression.
   createMonster(data) {
-    // Comme dans Todo : les callbacks permettent de prévenir la liste.
+    
     return new Monster(
+      // constructor de la class Monster recois 3 arguments
+      // data recois :
       data,
+      // onUpdate recois :
       () => this.renderMonsters(),
+      // onDelete recois :
       (id) => this.deleteOneById(id),
     );
   }
@@ -49,7 +53,10 @@ export default class MonstersList {
     this.domElt.innerHTML = getTemplate();
     this.listDomElt = this.domElt.querySelector("tbody");
     this.monsterAdd = new MonsterAdd(
+      // constructor class MonsterAdd recois 2 arguments 
+      // data 
       { el: "#app .monster-add" },
+      // onAdd
       (data) => this.store(data),
     );
     this.monsterAdd.render();
@@ -60,6 +67,8 @@ export default class MonstersList {
   // Filtre et trie les créatures, puis actualise le tableau et le compteur.
   renderMonsters() {
     // filter crée un nouveau tableau : la recherche ne supprime aucune donnée.
+
+  // barre de recherche 
     const search = this.search.toLowerCase().trim();
     const monsters = this.monsters.filter((monster) =>
       monster.name.toLowerCase().includes(search) ||
@@ -84,6 +93,7 @@ export default class MonstersList {
       monsters.length === 0 ? "Aucune créature à afficher." : "";
     this.domElt.querySelectorAll("[data-sort]").forEach((link) => {
       const selected = link.dataset.sort === this.sortBy;
+      // c est ici qu il verifie si il y a deja une direction definie 1 asc -1 desc 0 rien
       link.parentElement.setAttribute("aria-sort",
         selected ? (this.sortDirection === 1 ? "ascending" : "descending") : "none");
       link.classList.toggle("sort-selected", selected);
@@ -98,8 +108,10 @@ export default class MonstersList {
   }
 
   // Supprime une créature dans l'API et dans la liste, puis actualise l'affichage.
+  // ici deleteOneById est une methode de MonstersList
   async deleteOneById(id) {
-    // Même ordre que dans la todolist : API, tableau, puis DOM.
+    //  API, tableau, puis DOM.
+    // ici deleteOneById est une methode le DB 
     await DB.deleteOneById(id);
     this.monsters = this.monsters.filter((monster) => monster.id !== id);
     this.renderMonsters();
@@ -107,10 +119,14 @@ export default class MonstersList {
 
   // Active la recherche et le tri au clic sur les titres des colonnes.
   initEvents() {
+
+    // pour la recherche a partir de la barre de recherche
     this.domElt.querySelector(".search").addEventListener("input", (e) => {
       this.search = e.target.value;
       this.renderMonsters();
     });
+
+    // tri via le clic sur le lien ( name type year dangerLevel )
     this.domElt.querySelectorAll("[data-sort]").forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
